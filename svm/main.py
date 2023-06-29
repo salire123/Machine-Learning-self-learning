@@ -13,6 +13,7 @@ from sklearn import datasets
 # load data
 cancer = datasets.load_breast_cancer()
 
+
 # print(cancer.feature_names)
 # print(cancer.target_names)
 
@@ -21,5 +22,13 @@ y = cancer.target
 
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size=0.2)
 
-print(x_train, y_train)
-class = ['malignant', 'benign']# change 0,1 to malignant, benign
+classes = ['malignant', 'benign']  # change 0,1 to malignant, benign
+
+clf = svm.SVC(kernel="linear", C=2) 
+clf.fit(x_train, y_train)
+
+y_pred = clf.predict(x_test)
+
+acc = sklearn.metrics.accuracy_score(y_test, y_pred)
+print(acc)
+
